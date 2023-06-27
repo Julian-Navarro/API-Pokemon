@@ -28,7 +28,20 @@ const controllerPostPokemon: (req:Request, res:Response) => Object = async (req,
                 console.log("Missing info on controllerPostPokemon");
                 return res.status(404).send({msg: "Missing info to create a Pokemon"})
             } else {
-                const newPokemon: Pokemon = new PokemonModel(req.body);
+                let body = { 
+                    _id: Date.now(),
+                    name, 
+                    types, 
+                    lifePoints, 
+                    attackPoints, 
+                    defensePoints, 
+                    speedPoints, 
+                    heigth, 
+                    weigth, 
+                    img,
+                    isFromApi: false
+                }
+                const newPokemon: Pokemon = new PokemonModel(body);
                 await newPokemon.save()
     
                 console.log("Pokemon Created - ",newPokemon);

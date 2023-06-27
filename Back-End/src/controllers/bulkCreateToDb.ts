@@ -21,7 +21,6 @@ const bulkCreateToDb: () => void = async () => {
                     }
                 })
                 evolutionChainsPromises.push(promise)
-                // console.log(types);
                 
                 return {
                     _id: pok.id,
@@ -39,11 +38,10 @@ const bulkCreateToDb: () => void = async () => {
                 }
             })
             let newPokemonsArr2 = await Promise.all(newPokemonsArr)
-            // console.log(newPokemonsArr2);
             
             let pokemonEvolutions = await Promise.all(evolutionChainsPromises)
             newPokemonsArr2 = newPokemonsArr2.map(async (pok: any, i: any) => {
-                  (await pok).evolutionGroup = Number(pokemonEvolutions[i]?.url?.split("chain/")[1]?.slice(0, -1)) 
+                  (await pok).evolutionGroup = Number(pokemonEvolutions[i]?.url?.split("chain/")[1]?.slice(0, -1))
                   return pok
             }) 
             let finalArray = await Promise.all(newPokemonsArr2)

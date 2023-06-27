@@ -28,7 +28,7 @@ const PokemonSchema = new Schema({
     weigth: Number,
     img: String,
     evolutionGroup: Number,
-    createdInDb: Boolean,
+    isFromApi: Boolean,
 });
 
 
